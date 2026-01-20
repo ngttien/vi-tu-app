@@ -1,0 +1,12 @@
+# Chặn file secret
+**/service-account.json
+backend/config/service-account.json
+
+# Chặn file rác do gõ nhầm lệnh
+BOT-PhongThuy/git
+BOT-PhongThuy/Đẩy
+
+# Chặn cache và tài liệu
+**/__pycache__/
+**/*.docx
+**/gemini_web_session/

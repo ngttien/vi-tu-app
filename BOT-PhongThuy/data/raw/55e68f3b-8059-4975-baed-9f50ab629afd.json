@@ -1,0 +1,17 @@
+{
+    "meta": {
+        "uuid": "55e68f3b-8059-4975-baed-9f50ab629afd",
+        "timestamp": "2026-01-15 14:15:59",
+        "status": "PENDING"
+    },
+    "user_data": {
+        "full_name": "Tran Van Test",
+        "dob": "1998-12-20",
+        "email": "test.automail@gmail.com",
+        "finance_data": {
+            "salary": "15 triệu",
+            "saving": "100 triệu",
+            "goal": "Mua nhà"
+        }
+    }
+}
