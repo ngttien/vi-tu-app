@@ -1,0 +1,71 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --bg-dark: transparent; /* Đổi thành trong suốt để thấy MainLayout */
+  --card-bg: rgba(30, 41, 59, 0.7); /* Card mờ ảo đúng chất kính mờ */
+  --gold-start: #FCD34D;
+  --gold-end: #D97706;
+  --text-white: #f8fafc;
+  --text-gray: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.5);
+}
+
+body {
+  /* Nền thật sự nằm ở MainLayout, body nên để màu tối lót dưới */
+  background-color: #050b18; 
+  color: var(--text-white);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout căn giữa màn hình */
+.app-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: transparent !important; /* Xóa bỏ lớp phủ đặc */
+}
+
+.mobile-wrapper {
+  width: 100%;
+  max-width: 450px;
+  background: transparent !important;
+  position: relative;
+  z-index: 2; /* Nằm trên lớp hình nền của Layout */
+}
+
+/* Các Class dùng chung giữ nguyên nhưng tối ưu hiển thị */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #F59E0B, #D97706);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3);
+  margin-top: 20px;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 12px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid #475569;
+  border-radius: 30px;
+  color: #cbd5e1;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}

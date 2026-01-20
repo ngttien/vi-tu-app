@@ -1,0 +1,146 @@
+
+
+.security-card {
+  /* Chỉnh lại nền mờ để thấy hình ẩn phía sau */
+  background-color: rgba(15, 23, 42, 0.75); 
+  backdrop-filter: blur(8px);
+  padding: 24px;
+  border-radius: 16px; 
+  border: 1px solid rgba(30, 41, 59, 0.5);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  max-width: 500px; /* Giới hạn chiều rộng để thẻ không bị quá to trên màn hình lớn */
+  width: 100%;
+  margin: 0 auto;   /* Căn giữa */
+}
+
+.security-title-box {
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+  margin-bottom: 15px;
+}
+
+.security-title {
+  color: #fbbf24;
+  font-size: 1.1rem;
+  margin: 0;
+  padding-bottom: 10px;
+  display: inline-block;
+  border-bottom: 2px solid #fbbf24;
+  margin-bottom: -1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.security-note {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+/* Captcha Layout */
+.captcha-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.captcha-box {
+  position: relative;
+  border: 1px solid #fbbf24;
+  border-radius: 25px;
+  padding: 6px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  text-align: center;
+}
+
+.captcha-text {
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  font-weight: bold;
+  user-select: none; /* Không cho bôi đen copy */
+}
+
+.captcha-line {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  right: 10px;
+  height: 1.5px;
+  background-color: rgba(251, 191, 36, 0.5); /* Đường gạch trùng màu vàng */
+  pointer-events: none;
+}
+
+.input-field-security {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #e2e8f0; /* Nền xám nhạt */
+  color: #0f172a;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.input-field-security:focus {
+  box-shadow: 0 0 0 2px #fbbf24; /* Hiệu ứng focus viền vàng */
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-outline {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid #475569;
+  border-radius: 25px;
+  color: #94a3b8;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s;
+}
+
+.btn-outline:hover {
+  border-color: #fbbf24;
+  color: #fbbf24;
+}
+
+.btn-solid {
+  flex: 1;
+  padding: 12px;
+  background: #fbbf24; /* Vàng đậm */
+  border: none;
+  border-radius: 25px;
+  color: #0f172a;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: opacity 0.3s;
+}
+
+.btn-solid:hover {
+  opacity: 0.9;
+}
+
+.btn-solid:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}

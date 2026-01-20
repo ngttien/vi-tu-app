@@ -1,0 +1,105 @@
+/* src/layouts/MainLayout.css */
+
+:root {
+  --primary-gold: #fbbf24;
+  --dark-navy: #050b18; 
+  --text-gray: #cccccc;
+}
+
+/* HIỆU ỨNG XOAY NỀN (Giữ nguyên tâm ở giữa) */
+@keyframes spinSlow {
+  from { transform: translate(-50%, -50%) scale(1.8) rotate(0deg); }
+  to { transform: translate(-50%, -50%) scale(1.8) rotate(360deg); }
+}
+
+.main-layout-wrapper {
+  min-height: 100vh;
+  background-color: var(--dark-navy);
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Vẫn giữ Container nằm giữa màn hình */
+  overflow-x: hidden; 
+}
+
+.mystical-bg-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vmax;
+  height: 100vmax;
+  background-image: url('../assets/hoa-van-trong-dong-9.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12; 
+  z-index: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(1.8);
+  animation: spinSlow 240s linear infinite;
+}
+
+.main-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  /* KHÔNG DÙNG align-items: center ở đây để nội dung không bị ép vào giữa */
+}
+
+.header-section {
+  width: 100%;
+  text-align: center; /* HEADER VẪN CĂN GIỮA THEO FIGMA */
+  margin-bottom: 30px;
+}
+
+.header-title {
+  font-family: 'Times New Roman', serif;
+  font-weight: 700;
+  color: var(--primary-gold);
+  font-size: 2rem;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+.header-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+  margin: 0 auto 20px;
+  width: 60%;
+}
+
+.header-description {
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-gray);
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+/* NƠI CHỨA CÁC BƯỚC NHẬP LIỆU */
+.step-content {
+  width: 100%;
+  text-align: left; /* ĐƯA TẤT CẢ NỘI DUNG FORM VỀ BÊN TRÁI ĐÚNG FIGMA */
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .header-title { font-size: 1.6rem; letter-spacing: 2px; }
+  .main-container { padding: 30px 15px; }
+}

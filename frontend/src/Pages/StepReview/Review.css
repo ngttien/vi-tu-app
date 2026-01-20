@@ -1,0 +1,59 @@
+/* src/Pages/StepReview/Review.css */
+
+.step-desc {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.review-box {
+  background: rgba(15, 23, 42, 0.6); /* Nền tối mờ để thấy rồng ẩn phía sau */
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  margin-bottom: 25px;
+}
+
+.review-label {
+  font-size: 0.7rem;
+  color: #fbbf24;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.review-name {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 0 5px 0;
+}
+
+.review-detail {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.readonly-input {
+  background: rgba(203, 213, 225, 0.9) !important; /* Trắng xám báo hiệu readonly */
+  color: #1e293b !important;
+  cursor: not-allowed;
+  font-weight: 500;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  text-decoration: underline;
+  width: 100%;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  color: #fbbf24;
+}
