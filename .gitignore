@@ -1,12 +1,19 @@
-# Chặn file secret
-**/service-account.json
+@echo off
+title He Thong Thuan Thoi Hieu Menh
+
+:: Tu dong chuyen vao thu muc chua file .bat nay de tranh loi sai o dia
+cd /d "%~dp0"
+
+:: 1. Khoi dong Backend Node.js
+:: Thu muc dung la 'backend'
+start cmd /k "cd backend && node server.js"
+
+:: 2. Khoi dong AI Python Worker
+:: Thu muc dung la 'BOT-PhongThuy' va file chay la 'main.py'
+start cmd /k "cd BOT-PhongThuy && python main.py"
 backend/config/service-account.json
-
-# Chặn file rác do gõ nhầm lệnh
-BOT-PhongThuy/git
-BOT-PhongThuy/Đẩy
-
-# Chặn cache và tài liệu
-**/__pycache__/
-**/*.docx
-**/gemini_web_session/
+echo ======================================================
+echo He thong dang duoc khoi dong... 
+echo Luu y: Tai cua so AI, hay chon che do quet Sheet (thuong la phim 2).
+echo ======================================================
+pause

@@ -1,12 +1,13 @@
+// backend/models/userModel.js
 const pool = require('../config/db');
 
 const User = {
-  // Thay đổi từ create thành upsert để xử lý cả Thêm và Sửa
   upsert: async (data) => {
-    // 1. Logic: Nếu trùng email thì cập nhật (Update), nếu chưa thì thêm mới (Insert)
     const sql = `
-      INSERT INTO users (full_name, dob, tob, gender, goal, description, email) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7) 
+      INSERT INTO users (
+        full_name, dob, tob, gender, goal, description, email, request_uuid, status
+      ) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'pending') 
       ON CONFLICT (email) 
       DO UPDATE SET 
         full_name = EXCLUDED.full_name,
@@ -15,23 +16,52 @@ const User = {
         gender = EXCLUDED.gender,
         goal = EXCLUDED.goal,
         description = EXCLUDED.description,
-        created_at = NOW() -- Cập nhật lại thời gian tương tác mới nhất
+        request_uuid = EXCLUDED.request_uuid,
+        status = 'pending', -- Reset trạng thái về pending để Robot quét lại
+        created_at = NOW()
       RETURNING *;
     `;
     
-    // 2. Map đúng tên biến từ Frontend (App.jsx) gửi qua
     const values = [
       data.fullName, 
       data.dob, 
       data.tob, 
       data.gender, 
       data.goal, 
-      data.note || '', // note từ frontend được lưu vào description trong DB
-      data.email
+      data.note || '', 
+      data.email,
+      data.request_uuid 
     ];
     
     const result = await pool.query(sql, values);
     return result.rows[0];
+  },
+
+  // HÀM MỚI: Dành riêng cho con Robot (Worker) tìm người đang chờ
+  findPending: async () => {
+    const sql = `
+      SELECT * FROM users 
+      WHERE status = 'pending' 
+      OR (status = 'processing' AND updated_at < NOW() - INTERVAL '5 minutes')
+      ORDER BY created_at ASC 
+      LIMIT 1;
+    `;
+    const result = await pool.query(sql);
+    return result.rows[0];
+  },
+  updateStatus: async (id, status) => {
+    const sql = `UPDATE users SET status = $2, updated_at = NOW() WHERE id = $1;`;
+    await pool.query(sql, [id, status]);
+  },
+
+  // HÀM MỚI: Cập nhật kết quả sau khi Robot chat xong
+  updateResult: async (id, aiResponse) => {
+    const sql = `
+      UPDATE users 
+      SET ai_response = $2, status = 'done', updated_at = NOW() 
+      WHERE id = $1;
+    `;
+    await pool.query(sql, [id, aiResponse]);
   }
 };
 

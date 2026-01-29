@@ -4,9 +4,11 @@ import "./Review.css";
 const Review = ({ formData, onNext, onBack }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // HÀM NÀY ĐỂ GỬI DỮ LIỆU LÊN SERVER (KHÔNG PHẢI ĐỂ CHECK CAPTCHA)
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
+      // Gọi API thật ở đây
       const response = await fetch('http://localhost:3000/api/user/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -16,11 +18,11 @@ const Review = ({ formData, onNext, onBack }) => {
       const result = await response.json();
 
       if (response.ok) {
-        onNext(); // Chuyển sang StepSuccess (Frame 17)
+        onNext(); // Chuyển sang trang Thành công (StepSuccess)
       } else {
         alert("Lỗi: " + (result.message || "Không thể gửi dữ liệu"));
       }
-    } catch ( error ) {
+    } catch (error) {
       console.error(error);
       alert("Lỗi kết nối tới Server cổng 3000!");
     } finally {
@@ -30,8 +32,6 @@ const Review = ({ formData, onNext, onBack }) => {
 
   return (
     <div className="step-container">
-      {/* ĐÃ XÓA: header-section để không bị lặp với MainLayout */}
-
       <div className="input-card">
         <h3 className="section-title">Kiểm tra thông tin cuối</h3>
         <p className="step-desc">

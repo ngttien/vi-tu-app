@@ -1,6 +1,11 @@
+// backend/utils/googleDriveService.js
 const { google } = require('googleapis');
 const path = require('path');
 const { Readable } = require('stream');
+
+// --- 1. THÊM DÒNG NÀY ĐỂ ĐỌC FILE .ENV ---
+require('dotenv').config(); 
+// -----------------------------------------
 
 const KEYFILEPATH = path.join(__dirname, '../config/service-account.json');
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
@@ -16,7 +21,9 @@ const uploadToDrive = async (fileBuffer, fileName) => {
     try {
         const fileMetadata = {
             name: fileName,
-            parents: ['ID_THU_MUC_GOOGLE_DRIVE_CUA_BAN'], // Thay bằng ID folder trên Drive
+            // --- 2. SỬA DÒNG NÀY ĐỂ LẤY ID TỪ FILE .ENV ---
+            parents: [process.env.GOOGLE_DRIVE_FOLDER_ID], 
+            // ----------------------------------------------
         };
 
         const media = {
@@ -30,7 +37,7 @@ const uploadToDrive = async (fileBuffer, fileName) => {
             fields: 'id, webViewLink',
         });
 
-        // Cấp quyền xem cho bất kỳ ai có link (để gửi mail khách xem được ngay)
+        // Cấp quyền xem cho bất kỳ ai có link
         await drive.permissions.create({
             fileId: response.data.id,
             requestBody: {
@@ -39,7 +46,7 @@ const uploadToDrive = async (fileBuffer, fileName) => {
             },
         });
 
-        return response.data.webViewLink; // Trả về link file
+        return response.data.webViewLink; 
     } catch (error) {
         console.error('Lỗi Upload Drive:', error);
         throw error;
